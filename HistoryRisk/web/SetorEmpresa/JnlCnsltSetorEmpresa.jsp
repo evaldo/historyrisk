@@ -6,11 +6,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    int idSetorEmpr;
-    String nmSetorEmpr;
     SetorEmpresaDAO se = DAOFactory.createSetorEmpresaDAO();
     List<SetorEmpresa> setoresEmpresa = se.listar();
-            
 %>  
 <!DOCTYPE html>
 <html>
@@ -20,11 +17,14 @@
     </head>
     <body>
         <h1>Consulta Setor Empresa</h1>
+        <div><a href="JnlCdtrSetorEmpresa.jsp">Cadastrar</a></div>
         <table border="1">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nome do Setor</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
   
@@ -33,6 +33,8 @@
                 <tr>
                     <td><%=setorEmpresa.getIdSetorEmpr() %></td>
                     <td><%=setorEmpresa.getNmSetorEmpr() %></td>
+                    <td>Alterar</td>
+                    <td>Excluir</td>
                 </tr>
                 <%} %>
             </tbody>
