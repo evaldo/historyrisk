@@ -1,4 +1,4 @@
-package Classes;
+package br.cesjf.classes;
 
 public class CategoriaRisco {
 

@@ -1,4 +1,4 @@
-package Classes;
+package br.cesjf.classes;
 
 import java.util.Date;
 
