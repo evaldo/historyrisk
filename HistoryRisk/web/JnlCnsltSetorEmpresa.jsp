@@ -8,16 +8,9 @@
 <%
     SetorEmpresaDAO se = DAOFactory.createSetorEmpresaDAO();
     List<SetorEmpresa> setoresEmpresa = se.listar();
-%>  
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
+%>
+<%@ include file ="Menu.jsp" %>
         <h1>Consulta Setor Empresa</h1>
-        <div><a href="JnlCdtrSetorEmpresa.jsp">Cadastrar</a></div>
         <table border="1">
             <thead>
                 <tr>
@@ -39,6 +32,5 @@
                 <%} %>
             </tbody>
         </table>
-
-    </body>
-</html>
+            
+<%@ include file ="Rodape.jsp" %>

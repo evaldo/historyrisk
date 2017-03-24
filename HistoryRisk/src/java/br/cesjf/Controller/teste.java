@@ -11,7 +11,7 @@ public class teste {
 
  
     public static void main(String[] args) {
-        //ConnectionFactory.getConnection();
+        ConnectionFactory.getConnection();
         
         //SetorEmpresa setorEmpresa = new SetorEmpresa();
         //setorEmpresa.setIdSetorEmpr(2);
@@ -20,14 +20,14 @@ public class teste {
         //SetorEmpresaDAO sed = DAOFactory.createSetorEmpresaDAO();
         //sed.inserir(setorEmpresa);
         
-        SetorEmpresaDAO se = DAOFactory.createSetorEmpresaDAO();
-        List<SetorEmpresa> setoresEmpresa = se.listar();
-        for (SetorEmpresa setorEmpresa : setoresEmpresa) {
-            System.out.println("------------------------------------------");
-            System.out.println("ID: " + setorEmpresa.getIdSetorEmpr());
-            System.out.println("Nome: " + setorEmpresa.getNmSetorEmpr());
-            System.out.println("------------------------------------------");
-        }
+//        SetorEmpresaDAO se = DAOFactory.createSetorEmpresaDAO();
+//        List<SetorEmpresa> setoresEmpresa = se.listar();
+//        for (SetorEmpresa setorEmpresa : setoresEmpresa) {
+//            System.out.println("------------------------------------------");
+//            System.out.println("ID: " + setorEmpresa.getIdSetorEmpr());
+//            System.out.println("Nome: " + setorEmpresa.getNmSetorEmpr());
+//            System.out.println("------------------------------------------");
+//        }
         
     }
     

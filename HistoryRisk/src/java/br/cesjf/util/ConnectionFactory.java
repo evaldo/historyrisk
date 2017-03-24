@@ -12,7 +12,7 @@ public class ConnectionFactory {
     public static Connection getConnection(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            return (Connection) DriverManager.getConnection("jdbc:mysql://localhost/historyrisk", "root", "");
+            return (Connection) DriverManager.getConnection("jdbc:mysql://localhost/historyrisk", "root", "123456");
         
         }catch (SQLException ex){
             Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
