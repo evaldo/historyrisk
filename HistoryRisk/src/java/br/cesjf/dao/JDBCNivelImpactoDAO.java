@@ -21,7 +21,22 @@ public class JDBCNivelImpactoDAO implements NivelImpactoDAO{
 
     @Override
     public void inserir(NivelImpacto nivelImpacto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            String SQL = "INSERT INTO tb_hrsk_nivel_ipcto (ID_NIVEL_IPCTO, NM_NIVEL_IPCTO, DS_NIVEL_IPCTO, IC_NIVEL_IPCTO) VALUES" 
+                    + "(?, ?, ?, ?)";
+            PreparedStatement se = (PreparedStatement) connection.prepareStatement(SQL);
+            se.setInt(1, nivelImpacto.getIdNivelIpcto());
+            se.setString(2, nivelImpacto.getNmNivelIpcto());
+            se.setString(3, nivelImpacto.getDsNivelIpcto());
+            se.setInt(4, nivelImpacto.getIcNivelIpcto());
+            
+            se.executeUpdate();
+            se.close();
+        }catch (SQLException ex) {
+             Logger.getLogger(JDBCNivelImpactoDAO.class.getName()).log(Level.SEVERE, null, ex);
+             throw new RuntimeException("Falha ao inserir Nivel Impacto em JDBCNivelImpactoDAO.", ex);
+        }
     }
 
     @Override
@@ -41,7 +56,7 @@ public class JDBCNivelImpactoDAO implements NivelImpactoDAO{
                 nivelImpacto.setIdNivelIpcto(rs.getInt("ID_NIVEL_IPCTO"));
                 nivelImpacto.setNmNivelIpcto(rs.getString("NM_NIVEL_IPCTO"));
                 nivelImpacto.setDsNivelIpcto(rs.getString("DS_NIVEL_IPCTO"));
-                nivelImpacto.setIcNivelIpcto(rs.getString("IC_NIVEL_IPCTO"));
+                nivelImpacto.setIcNivelIpcto(rs.getInt("IC_NIVEL_IPCTO"));
                 niveisImpacto.add(nivelImpacto);
             }
             se.close();
@@ -69,7 +84,7 @@ public class JDBCNivelImpactoDAO implements NivelImpactoDAO{
             nivelImpacto.setIdNivelIpcto(rs.getInt("ID_NIVEL_IPCTO"));
             nivelImpacto.setNmNivelIpcto(rs.getString("NM_NIVEL_IPCTO"));
             nivelImpacto.setDsNivelIpcto(rs.getString("DS_NIVEL_IPCTO"));
-            nivelImpacto.setIcNivelIpcto(rs.getString("IC_NIVEL_IPCTO"));
+            nivelImpacto.setIcNivelIpcto(rs.getInt("IC_NIVEL_IPCTO"));
 
             nvlipcto.close();
             rs.close();

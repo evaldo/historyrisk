@@ -5,7 +5,7 @@ public class NivelImpacto {
     private int idNivelIpcto;
     private String nmNivelIpcto;
     private String dsNivelIpcto;
-    private String icNivelIpcto;
+    private int icNivelIpcto;
 
     public NivelImpacto() {
     }
@@ -34,13 +34,14 @@ public class NivelImpacto {
         this.dsNivelIpcto = dsNivelIpcto;
     }
 
-    public String getIcNivelIpcto() {
+    public int getIcNivelIpcto() {
         return icNivelIpcto;
     }
 
-    public void setIcNivelIpcto(String icNivelIpcto) {
+    public void setIcNivelIpcto(int icNivelIpcto) {
         this.icNivelIpcto = icNivelIpcto;
     }
+
     
     
     

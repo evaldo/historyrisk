@@ -18,21 +18,21 @@
             <li><a href="#">Categoria do Risco</a>
                 <ul>
                     <li>Home</li>
-                    <li>Cadastrar</a></li>
+                    <li><a href="JnlCdtrCategoriaRisco.jsp">Cadastrar</a></li>
                     <li><a href="JnlCnsltCategoriaRisco.jsp">Pesquisar</a></li>
                 </ul>
             </li>
             <li><a href="#">Faixa de Probabilidade</a>
                 <ul>
                     <li>Home</li>
-                    <li>Cadastrar</a></li>
+                    <li><a href="JnlCdtrFaixaProbabilidade.jsp">Cadastrar</a></li>
                     <li><a href="JnlCnsltFaixaProbabilidade.jsp">Pesquisar</a></li>
                 </ul>
             </li>
             <li><a href="#">Nivel</a> 
                 <ul>
                     <li>Home</li>
-                    <li>Cadastrar</a></li>
+                    <li><a href="JnlCdtrNivelImpacto.jsp">Cadastrar</a></li>
                     <li><a href="JnlCnsltNivelImpacto.jsp">Pesquisar</a></li>
                 </ul>
             </li>

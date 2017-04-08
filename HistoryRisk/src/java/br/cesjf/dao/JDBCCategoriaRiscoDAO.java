@@ -23,7 +23,19 @@ public class JDBCCategoriaRiscoDAO implements CategoriaRiscoDAO {
 
     @Override
     public void inserir(CategoriaRisco categoriaRisco) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String SQL = "INSERT INTO tb_hrsk_catg_risco (ID_CATG_RISCO, DS_CATG_RISCO) VALUES" 
+                    + "(?, ?)";
+            PreparedStatement se = (PreparedStatement) connection.prepareStatement(SQL);
+            se.setInt(1, categoriaRisco.getIdCategoriaRisco());
+            se.setString(2, categoriaRisco.getDsCategoriaRisco());
+            
+            se.executeUpdate();
+            se.close();
+        }catch (SQLException ex) {
+             Logger.getLogger(JDBCCategoriaRiscoDAO.class.getName()).log(Level.SEVERE, null, ex);
+             throw new RuntimeException("Falha ao inserir Categoria Risco em JDBCCategoriaRiscoDAO.", ex);
+        }
     }
 
     @Override

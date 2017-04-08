@@ -24,7 +24,22 @@ public class JDBCFaixaProbabilidadeDAO implements FaixaProbabilidadeDAO {
 
     @Override
     public void inserir(FaixaProbabilidade faixaProbabilidade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+        String SQL = "INSERT INTO tb_hrsk_faixa_prob (ID_FAIXA_PROB, DS_FAIXA_PROB, NU_LMTE_INFR, NU_LMTE_SUPR) VALUES" 
+                    + "(?, ?, ?, ?)";
+            PreparedStatement se = (PreparedStatement) connection.prepareStatement(SQL);
+            se.setInt(1, faixaProbabilidade.getIdFaixaProb());
+            se.setString(2, faixaProbabilidade.getDsFaixaProb());
+            se.setInt(3, faixaProbabilidade.getNuLmteInfr());
+            se.setInt(4, faixaProbabilidade.getNuLmteSupr());
+            
+            se.executeUpdate();
+            se.close();
+        }catch (SQLException ex) {
+             Logger.getLogger(JDBCFaixaProbabilidadeDAO.class.getName()).log(Level.SEVERE, null, ex);
+             throw new RuntimeException("Falha ao inserir Faixa Probabilidade em JDBCFaixaProbabilidadeDAO.", ex);
+        }
     }
 
     @Override

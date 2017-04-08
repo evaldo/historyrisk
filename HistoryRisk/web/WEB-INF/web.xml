@@ -5,9 +5,33 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>CategoriaRiscoController</servlet-name>
+        <servlet-class>br.cesjf.Controller.CategoriaRiscoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FaixaProbabilidadeController</servlet-name>
+        <servlet-class>br.cesjf.Controller.FaixaProbabilidadeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NivelImpactoController</servlet-name>
+        <servlet-class>br.cesjf.Controller.NivelImpactoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern></url-pattern>
+        <url-pattern/>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoriaRiscoController</servlet-name>
+        <url-pattern>/CategoriaRiscoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FaixaProbabilidadeController</servlet-name>
+        <url-pattern>/FaixaProbabilidadeController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NivelImpactoController</servlet-name>
+        <url-pattern>/NivelImpactoController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -3,14 +3,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>History Risk - Nova Categoria de Risco</title>
     </head>
     <body>
+        <%@ include file ="Menu.jsp" %>
         <h1>Cadastro de Categoria de Risco</h1>
-        <form name="form1" action="CategoriaRiscoProcessa.jsp" method="POST">
-            <div>ID: <input type="text" name="idCatgRisco" value="" readonly="readonly" /></div>
+        <form name="form1" action="CategoriaRiscoController" method="POST">
+            <div>ID: <input type="text" name="idCatgRisco" value=""/></div>
             <div>Descrição<font color='red'>*</font>: <input type="text" name="dsCatgRisco" value="" /></div>
             <div><input type="submit" value="Salvar" name="salvar" /> <input type="reset" value="Cancelar" name="cancelar" /></div>
         </form>
+        <%@ include file ="Rodape.jsp" %>
     </body>
 </html>
