@@ -43,8 +43,8 @@ public class JDBCProjetoDAO implements ProjetoDAO {
                 
                 JDBCSetorEmpresaDAO ds = new JDBCSetorEmpresaDAO();
                 SetorEmpresa setorEmpresa = ds.buscar(rs.getInt("ID_SETOR_EMPR"));
-                
                 projeto.setSetorEmpresa(setorEmpresa);
+                
                 projeto.setDsPrjt(rs.getString("DS_PRJT"));
                 projeto.setDtRgstPrjt(rs.getDate("DT_RGST_PRJT"));
                 projetos.add(projeto);
@@ -54,7 +54,7 @@ public class JDBCProjetoDAO implements ProjetoDAO {
             return projetos;
 
         } catch (SQLException ex) {
-            Logger.getLogger(JDBCSetorEmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDBCProjetoDAO.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException("Falha ao listar Projetos em JDBCProjetoDAO", ex);
         }
     
@@ -62,7 +62,34 @@ public class JDBCProjetoDAO implements ProjetoDAO {
 
     @Override
     public Projeto buscar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          Projeto projeto = new Projeto();
+        
+        try {
+            String SQL = "SELECT * FROM tb_hrsk_prjt WHERE ID_HRSK_PRJT = ?";
+            PreparedStatement prjt = (PreparedStatement) connection.prepareStatement(SQL);
+            prjt.setInt(1, id);
+            ResultSet rs = prjt.executeQuery();
+            
+            rs.next();
+            
+            projeto.setIdHrskprjt(rs.getInt("ID_HRSK_PRJT"));
+            
+            JDBCSetorEmpresaDAO ds = new JDBCSetorEmpresaDAO();
+            SetorEmpresa setorEmpresa = ds.buscar(rs.getInt("ID_SETOR_EMPR"));
+            projeto.setSetorEmpresa(setorEmpresa);
+            
+            projeto.setDsPrjt(rs.getString("DS_PRJT"));
+            projeto.setDtRgstPrjt(rs.getDate("DT_RGST_PRJT"));
+
+            prjt.close();
+            rs.close();
+            
+            return projeto;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCProjetoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao listar o Projeto desejado em JDBCProjetoDAO", ex);
+        }
     }
 
     @Override

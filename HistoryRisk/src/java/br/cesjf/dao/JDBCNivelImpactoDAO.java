@@ -56,7 +56,30 @@ public class JDBCNivelImpactoDAO implements NivelImpactoDAO{
 
     @Override
     public NivelImpacto buscar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+               NivelImpacto nivelImpacto = new NivelImpacto();
+        
+        try {
+            String SQL = "SELECT * FROM tb_hrsk_nivel_ipcto WHERE ID_NIVEL_IPCTO = ?";
+            PreparedStatement nvlipcto = (PreparedStatement) connection.prepareStatement(SQL);
+            nvlipcto.setInt(1, id);
+            ResultSet rs = nvlipcto.executeQuery();
+            
+            rs.next();
+            
+            nivelImpacto.setIdNivelIpcto(rs.getInt("ID_NIVEL_IPCTO"));
+            nivelImpacto.setNmNivelIpcto(rs.getString("NM_NIVEL_IPCTO"));
+            nivelImpacto.setDsNivelIpcto(rs.getString("DS_NIVEL_IPCTO"));
+            nivelImpacto.setIcNivelIpcto(rs.getString("IC_NIVEL_IPCTO"));
+
+            nvlipcto.close();
+            rs.close();
+            
+            return nivelImpacto;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCNivelImpactoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao listar o Nivel Impacto desejado em JDBCNivelImpactoDAO", ex);
+        }
     }
 
     @Override

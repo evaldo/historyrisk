@@ -56,7 +56,27 @@ public class JDBCCategoriaRiscoDAO implements CategoriaRiscoDAO {
 
     @Override
     public CategoriaRisco buscar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CategoriaRisco categoriaRisco = new CategoriaRisco();
+        
+        try {
+            String SQL = "SELECT * FROM tb_hrsk_catg_risco WHERE ID_CATG_RISCO = ?";
+            PreparedStatement ctgr = (PreparedStatement) connection.prepareStatement(SQL);
+            ctgr.setInt(1, id);
+            ResultSet rs = ctgr.executeQuery();
+            
+            rs.next();
+            categoriaRisco.setIdCategoriaRisco(rs.getInt("ID_CATG_RISCO"));
+            categoriaRisco.setDsCategoriaRisco(rs.getString("DS_CATG_RISCO"));
+
+            ctgr.close();
+            rs.close();
+            
+            return categoriaRisco;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCSetorEmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao listar o SetorEmpresa desejado em JDBCSetorEmpresaDAO", ex);
+        }
     }
 
     @Override

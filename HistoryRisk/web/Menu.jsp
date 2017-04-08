@@ -47,7 +47,7 @@
                 <ul>
                     <li>Home</li>
                     <li>Cadastrar</a></li>
-                    <li>Pesquisar</li>
+                    <li><a href="JnlCnsltRisco.jsp">Pesquisar</a></li>
                 </ul>
             </li>
         </div>

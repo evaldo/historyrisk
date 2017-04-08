@@ -59,7 +59,30 @@ public class JDBCFaixaProbabilidadeDAO implements FaixaProbabilidadeDAO {
 
     @Override
     public FaixaProbabilidade buscar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       FaixaProbabilidade faixaProbabilidade = new FaixaProbabilidade();
+        
+        try {
+            String SQL = "SELECT * FROM tb_hrsk_faixa_prob WHERE ID_FAIXA_PROB = ?";
+            PreparedStatement fxpb = (PreparedStatement) connection.prepareStatement(SQL);
+            fxpb.setInt(1, id);
+            ResultSet rs = fxpb.executeQuery();
+            
+            rs.next();
+            
+            faixaProbabilidade.setIdFaixaProb(rs.getInt("ID_FAIXA_PROB"));
+            faixaProbabilidade.setDsFaixaProb(rs.getString("DS_FAIXA_PROB"));
+            faixaProbabilidade.setNuLmteInfr(rs.getInt("NU_LMTE_INFR"));
+            faixaProbabilidade.setNuLmteSupr(rs.getInt("NU_LMTE_SUPR"));
+            
+            fxpb.close();
+            rs.close();
+            
+            return faixaProbabilidade;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCFaixaProbabilidadeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao listar o Faixa probabilidade desejado em JDBCFaixaProbabilidadeDAO", ex);
+        }
     }
 
     @Override

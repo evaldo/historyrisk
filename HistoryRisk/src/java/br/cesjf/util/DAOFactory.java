@@ -6,9 +6,11 @@ import br.cesjf.dao.JDBCCategoriaRiscoDAO;
 import br.cesjf.dao.JDBCFaixaProbabilidadeDAO;
 import br.cesjf.dao.JDBCNivelImpactoDAO;
 import br.cesjf.dao.JDBCProjetoDAO;
+import br.cesjf.dao.JDBCRiscoDAO;
 import br.cesjf.dao.JDBCSetorEmpresaDAO;
 import br.cesjf.dao.NivelImpactoDAO;
 import br.cesjf.dao.ProjetoDAO;
+import br.cesjf.dao.RiscoDAO;
 import br.cesjf.dao.SetorEmpresaDAO;
 
 public class DAOFactory {
@@ -31,6 +33,10 @@ public class DAOFactory {
     
     public static ProjetoDAO createProjetoDAO(){
         return new JDBCProjetoDAO();
+    }
+    
+    public static RiscoDAO createRiscoDAO(){
+        return new JDBCRiscoDAO();
     }
     
 }

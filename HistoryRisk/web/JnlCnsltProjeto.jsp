@@ -8,6 +8,7 @@
     ProjetoDAO prjt = DAOFactory.createProjetoDAO();
     List<Projeto> projetos = prjt.listar();
 %>
+
 <%@ include file ="Menu.jsp" %>
         <h1>Consulta Projeto</h1>
         <table border="1">
