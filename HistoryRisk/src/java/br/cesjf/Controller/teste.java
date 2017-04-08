@@ -1,6 +1,8 @@
 package br.cesjf.Controller;
 
+import br.cesjf.classes.Projeto;
 import br.cesjf.classes.SetorEmpresa;
+import br.cesjf.dao.ProjetoDAO;
 import br.cesjf.dao.SetorEmpresaDAO;
 import br.cesjf.util.ConnectionFactory;
 import br.cesjf.util.DAOFactory;
@@ -20,14 +22,16 @@ public class teste {
         //SetorEmpresaDAO sed = DAOFactory.createSetorEmpresaDAO();
         //sed.inserir(setorEmpresa);
         
-//        SetorEmpresaDAO se = DAOFactory.createSetorEmpresaDAO();
-//        List<SetorEmpresa> setoresEmpresa = se.listar();
-//        for (SetorEmpresa setorEmpresa : setoresEmpresa) {
-//            System.out.println("------------------------------------------");
-//            System.out.println("ID: " + setorEmpresa.getIdSetorEmpr());
-//            System.out.println("Nome: " + setorEmpresa.getNmSetorEmpr());
-//            System.out.println("------------------------------------------");
-//        }
+        ProjetoDAO prjt = DAOFactory.createProjetoDAO();
+         List<Projeto> projetos = prjt.listar();
+        for (Projeto projeto : projetos) {
+            System.out.println("------------------------------------------");
+            System.out.println("ID: " + projeto.getIdHrskprjt());
+            System.out.println("Nome do setor da empresa: " + projeto.getSetorEmpresa().getNmSetorEmpr());
+            System.out.println("Descrição do Projeto: " + projeto.getDsPrjt());
+            System.out.println("Data do Projeto: " + projeto.getDtRgstPrjt());
+            System.out.println("------------------------------------------");
+       }
         
     }
     

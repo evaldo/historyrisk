@@ -12,7 +12,7 @@
                 <ul>
                     <li>Home</li>
                     <li><a href="JnlCdtrSetorEmpresa.jsp">Cadastrar</a></li>
-                    <li><a href="JnlCnsltSetorEmpresa.jsp">Pesquisar</li>
+                    <li><a href="JnlCnsltSetorEmpresa.jsp">Pesquisar</a></li>
                 </ul>
             </li>
             <li><a href="#">Categoria do Risco</a>
@@ -26,21 +26,21 @@
                 <ul>
                     <li>Home</li>
                     <li>Cadastrar</a></li>
-                    <li><a href="JnlCnsltFaixaProbabilidade.jsp">Pesquisar</li>
+                    <li><a href="JnlCnsltFaixaProbabilidade.jsp">Pesquisar</a></li>
                 </ul>
             </li>
             <li><a href="#">Nivel</a> 
                 <ul>
                     <li>Home</li>
                     <li>Cadastrar</a></li>
-                    <li><a href="JnlCnsltNivelImpacto.jsp">Pesquisar</li>
+                    <li><a href="JnlCnsltNivelImpacto.jsp">Pesquisar</a></li>
                 </ul>
             </li>
             <li><a href="#">Projeto</a>
                 <ul>
                     <li>Home</li>
                     <li>Cadastrar</a></li>
-                    <li>Pesquisar</li>
+                    <li><a href="JnlCnsltProjeto.jsp">Pesquisar</a></li>
                 </ul>
             </li>
             <li><a href="#">Risco</a>

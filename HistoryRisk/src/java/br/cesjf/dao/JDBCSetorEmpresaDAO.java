@@ -83,9 +83,9 @@ public class JDBCSetorEmpresaDAO implements SetorEmpresaDAO {
         SetorEmpresa setorEmpresa = new SetorEmpresa();
         
         try {
-            String SQL = "SELECT * FROM tb_setor_empr WHERE ID = ?";
+            String SQL = "SELECT * FROM tb_setor_empr WHERE ID_SETOR_EMPR = ?";
             PreparedStatement se = (PreparedStatement) connection.prepareStatement(SQL);
-            //se.setInt(1, id);
+            se.setInt(1, id);
             ResultSet rs = se.executeQuery();
             
             rs.next();
