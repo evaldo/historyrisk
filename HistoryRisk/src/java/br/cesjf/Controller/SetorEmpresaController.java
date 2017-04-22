@@ -14,6 +14,29 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "SetorEmpresaController", urlPatterns = {"/SetorEmpresaController"})
 public class SetorEmpresaController extends HttpServlet {
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String opcao = request.getParameter("opcao");
+        int idSetorEmpr = Integer.parseInt(request.getParameter("idSetorEmpr"));
+        String nmSetorEmpr = request.getParameter("nmSetorEmpr");
+        
+        
+        
+        if (opcao.equals("excluir")){
+            
+            SetorEmpresa setorEmpresa = new SetorEmpresa();
+            setorEmpresa.setIdSetorEmpr(idSetorEmpr);
+            setorEmpresa.setNmSetorEmpr(nmSetorEmpr);
+
+            SetorEmpresaDAO sed = DAOFactory.createSetorEmpresaDAO();
+            sed.remover(idSetorEmpr);
+
+            request.getRequestDispatcher("JnlCnsltSetorEmpresa.jsp").forward(request, response);
+        }
+        
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,7 +56,22 @@ public class SetorEmpresaController extends HttpServlet {
 
             request.getRequestDispatcher("JnlCnsltSetorEmpresa.jsp").forward(request, response);
         }
+        
+        if (opcao.equals("alterar")){
+            
+            SetorEmpresa setorEmpresa = new SetorEmpresa();
+            setorEmpresa.setIdSetorEmpr(idSetorEmpr);
+            setorEmpresa.setNmSetorEmpr(nmSetorEmpr);
+
+            SetorEmpresaDAO sed = DAOFactory.createSetorEmpresaDAO();
+            sed.editar(setorEmpresa);
+
+            request.getRequestDispatcher("JnlCnsltSetorEmpresa.jsp").forward(request, response);
+        }
+           
 
     }
+    
+    
 
 }

@@ -33,8 +33,8 @@
                 <tr>
                     <td><%=setorEmpresa.getIdSetorEmpr()%></a></td>
                     <td><%=setorEmpresa.getNmSetorEmpr()%></td>
-                    <td>Alterar</td>
-                    <td>Excluir</td>
+                    <td><a href="JnlAltSetorEmpresa.jsp?opcao=alterar&idSetorEmpr=<%=setorEmpresa.getIdSetorEmpr()%>&nmSetorEmpr=<%=setorEmpresa.getNmSetorEmpr()%>">Alterar</a></td>
+                    <td><a href="SetorEmpresaController?opcao=excluir&idSetorEmpr=<%=setorEmpresa.getIdSetorEmpr()%>&nmSetorEmpr=<%=setorEmpresa.getNmSetorEmpr()%>">Excluir</a></td>
                 </tr>
                 <%}%>
             </tbody>

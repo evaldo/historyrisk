@@ -41,7 +41,7 @@ public class JDBCSetorEmpresaDAO implements SetorEmpresaDAO {
     public void remover(int id) {
       
         try {
-            String SQL = "DELETE FROM tb_setor_empr WHERE id = ?";
+            String SQL = "DELETE FROM tb_setor_empr WHERE ID_SETOR_EMPR = ?";
             PreparedStatement se = (PreparedStatement) connection.prepareStatement(SQL);
             se.setInt(1, id);
             se.executeUpdate();
