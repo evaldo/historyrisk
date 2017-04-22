@@ -34,7 +34,7 @@ public class NivelImpactoController extends HttpServlet {
         NivelImpactoDAO sed = DAOFactory.createNivelImpactoDAO();
         sed.inserir(nivelImpacto);
         
-        request.getRequestDispatcher("JnlCnsltNivelImpacto.jsp");
+        request.getRequestDispatcher("JnlCnsltNivelImpacto.jsp").forward(request,response);
     }
 
  

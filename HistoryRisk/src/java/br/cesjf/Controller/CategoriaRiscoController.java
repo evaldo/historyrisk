@@ -28,7 +28,7 @@ public class CategoriaRiscoController extends HttpServlet {
         CategoriaRiscoDAO sed = DAOFactory.createCategoraiRiscoDAO();
         sed.inserir(categoriaRisco);
         
-        request.getRequestDispatcher("JnlCnsltCategoriaRisco.jsp");
+        request.getRequestDispatcher("JnlCnsltCategoriaRisco.jsp").forward(request,response);
     }
 
 

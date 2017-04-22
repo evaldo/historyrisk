@@ -3,12 +3,19 @@
 <%@page import="java.util.List"%>
 <%@page import="br.cesjf.util.DAOFactory"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<!DOCTYPE html>
 
 <%
     CategoriaRiscoDAO se = DAOFactory.createCategoraiRiscoDAO();
     List<CategoriaRisco> categoriasRisco = se.listar();
 %>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>History Risk - Nova Categoria de Risco</title>
+    </head>
+    <body>
+        
 <%@ include file ="Menu.jsp" %>
         <h1>Consulta Categoria do Risco</h1>
         <table border="1">
@@ -34,3 +41,6 @@
         </table>
             
 <%@ include file ="Rodape.jsp" %>
+
+    </body>
+</html>

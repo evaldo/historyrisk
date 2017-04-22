@@ -32,7 +32,7 @@ public class FaixaProbabilidadeController extends HttpServlet {
         FaixaProbabilidadeDAO sed = DAOFactory.createFaixaProbabilidadeDAO();
         sed.inserir(faixaProbabilidade);
         
-        request.getRequestDispatcher("JnlCnsltCategoriaRisco.jsp");
+        request.getRequestDispatcher("JnlCnsltCategoriaRisco.jsp").forward(request,response);
         
     }
  

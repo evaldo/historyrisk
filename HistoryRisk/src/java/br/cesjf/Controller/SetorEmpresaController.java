@@ -17,20 +17,23 @@ public class SetorEmpresaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
+        String opcao = request.getParameter("opcao");
         int idSetorEmpr = Integer.parseInt(request.getParameter("idSetorEmpr"));
         String nmSetorEmpr = request.getParameter("nmSetorEmpr");
-        
-        SetorEmpresa setorEmpresa = new SetorEmpresa();
-        setorEmpresa.setIdSetorEmpr(idSetorEmpr);
-        setorEmpresa.setNmSetorEmpr(nmSetorEmpr);
-        
-        SetorEmpresaDAO sed = DAOFactory.createSetorEmpresaDAO();
-        sed.inserir(setorEmpresa);
-        
-        request.getRequestDispatcher("JnlCnsltSetorEmpresa.jsp");
-        
-        
+
+        if (opcao.equals("incluir")) {
+            
+            SetorEmpresa setorEmpresa = new SetorEmpresa();
+            setorEmpresa.setIdSetorEmpr(idSetorEmpr);
+            setorEmpresa.setNmSetorEmpr(nmSetorEmpr);
+
+            SetorEmpresaDAO sed = DAOFactory.createSetorEmpresaDAO();
+            sed.inserir(setorEmpresa);
+
+            request.getRequestDispatcher("JnlCnsltSetorEmpresa.jsp").forward(request, response);
+        }
+
     }
 
 }

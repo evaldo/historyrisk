@@ -17,6 +17,10 @@
         <servlet-name>NivelImpactoController</servlet-name>
         <servlet-class>br.cesjf.Controller.NivelImpactoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProjetoController</servlet-name>
+        <servlet-class>br.cesjf.Controller.ProjetoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern/>
@@ -32,6 +36,10 @@
     <servlet-mapping>
         <servlet-name>NivelImpactoController</servlet-name>
         <url-pattern>/NivelImpactoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProjetoController</servlet-name>
+        <url-pattern>/ProjetoController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

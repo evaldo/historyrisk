@@ -9,7 +9,8 @@
         <%@ include file ="Menu.jsp" %>
         <h1>Cadastro de Categoria de Risco</h1>
         <form name="form1" action="CategoriaRiscoController" method="POST">
-            <div>ID: <input type="text" name="idCatgRisco" value=""/></div>
+            <div><input type="hidden" name="opcao" value="incluir">
+            <div>ID: <input type="text" name="idCatgRisco" value="" size="3"/></div>
             <div>Descrição<font color='red'>*</font>: <input type="text" name="dsCatgRisco" value="" /></div>
             <div><input type="submit" value="Salvar" name="salvar" /> <input type="reset" value="Cancelar" name="cancelar" /></div>
         </form>

@@ -4,6 +4,7 @@ import br.cesjf.classes.Projeto;
 import br.cesjf.classes.SetorEmpresa;
 import br.cesjf.util.ConnectionFactory;
 import com.mysql.jdbc.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +23,24 @@ public class JDBCProjetoDAO implements ProjetoDAO {
 
     @Override
     public void inserir(Projeto projeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String SQL = "INSERT INTO tb_hrsk_prjt (ID_HRSK_PRJT, ID_SETOR_EMPR, DS_PRJT, DT_RGST_PRJT) VALUES" 
+                    + "(?, ?, ?, ?)";
+            PreparedStatement prjt = (PreparedStatement) connection.prepareStatement(SQL);
+            
+            prjt.setInt(1, projeto.getIdHrskprjt());
+            
+            prjt.setInt(2,  projeto.getSetorEmpresa().getIdSetorEmpr());
+            prjt.setString(3, projeto.getDsPrjt());
+            prjt.setDate(4, new java.sql.Date(projeto.getDtRgstPrjt().getTime()));
+            
+            prjt.executeUpdate();
+            prjt.close();
+            
+        }catch (SQLException ex) {
+             Logger.getLogger(JDBCProjetoDAO.class.getName()).log(Level.SEVERE, null, ex);
+             throw new RuntimeException("Falha ao inserir Projeto em JDBCProjetoDAO.", ex);
+        }
     }
 
     @Override
