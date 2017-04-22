@@ -29,8 +29,8 @@
                     <td><%=nivelImpacto.getNmNivelIpcto()%></td>
                     <td><%=nivelImpacto.getDsNivelIpcto()%></td>
                     <td><%=nivelImpacto.getIcNivelIpcto()%></td>
-                    <td>Alterar</td>
-                    <td>Excluir</td>
+                    <td><a href="JnlAltNivelImpacto.jsp?opcao=alterar&idNivelIpcto=<%=nivelImpacto.getIdNivelIpcto()%>&nmNivelIpcto=<%=nivelImpacto.getNmNivelIpcto()%>&dsNivelIpcto=<%=nivelImpacto.getDsNivelIpcto()%>&icNivelIpcto=<%=nivelImpacto.getIcNivelIpcto()%>">Alterar</a></td>
+                    <td><a href="NivelImpactoController?opcao=excluir&idNivelIpcto=<%=nivelImpacto.getIdNivelIpcto()%>">Excluir</a></td>
                 </tr>
                 <%} %>
             </tbody>

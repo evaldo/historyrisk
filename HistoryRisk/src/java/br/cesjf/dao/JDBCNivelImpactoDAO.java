@@ -41,7 +41,17 @@ public class JDBCNivelImpactoDAO implements NivelImpactoDAO{
 
     @Override
     public void remover(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       try {
+            String SQL = "DELETE FROM tb_hrsk_nivel_ipcto WHERE ID_NIVEL_IPCTO = ?";
+            PreparedStatement se = (PreparedStatement) connection.prepareStatement(SQL);
+            se.setInt(1, id);
+            se.executeUpdate();
+            se.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCSetorEmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao remover Faixa Probabilidade em JDBCFaixaProbabilidadeDAO", ex);
+        }
     }
 
     @Override
@@ -98,8 +108,22 @@ public class JDBCNivelImpactoDAO implements NivelImpactoDAO{
     }
 
     @Override
-    public void editar(NivelImpacto setorEmpresa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void editar(NivelImpacto nivelImpacto) {
+       try {
+            String SQL = "UPDATE tb_hrsk_nivel_ipcto SET NM_NIVEL_IPCTO=?, DS_NIVEL_IPCTO=?, IC_NIVEL_IPCTO=? where ID_NIVEL_IPCTO=?";
+            PreparedStatement se = (PreparedStatement) connection.prepareStatement(SQL);
+            
+            se.setString(1, nivelImpacto.getNmNivelIpcto());
+            se.setString(2, nivelImpacto.getDsNivelIpcto());
+            se.setInt(3, nivelImpacto.getIcNivelIpcto());
+            se.setInt(4, nivelImpacto.getIdNivelIpcto());
+            
+            se.executeUpdate();
+            se.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCSetorEmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao atualizar o Nivel Impacto desejado em JDBCNivelImpactoDAO", ex);
+        }
     }
 
 

@@ -9,6 +9,7 @@
         <%@ include file ="Menu.jsp" %>
         <h1>Cadastro de Nivel de Impacto</h1>
         <form name="form1" action="NivelImpactoController" method="POST">
+            <div><input type="hidden" name="opcao" value="incluir">
             <div>ID: <input type="text" name="idNivelIpcto" value="" size="3"/></div>
             <div>Nome Nivel Impacto: <input type="text" name="nmNivelIpcto"/></div>
             <div>Descrição Nivel Impacto: <input type="text" name="dsNivelIpcto"/> </div>
