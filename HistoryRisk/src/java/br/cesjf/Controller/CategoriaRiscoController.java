@@ -12,11 +12,32 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CategoriaRiscoController extends HttpServlet {
 
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String opcao = request.getParameter("opcao");
+        int idCategoriaRisco = Integer.parseInt(request.getParameter("idCategoriaRisco"));
+        String dsCategoriaRisco = request.getParameter("dsCategoriaRisco");
+        
+        if (opcao.equals("excluir")){
+            
+            CategoriaRisco categoriaRisco = new CategoriaRisco();
+            categoriaRisco.setIdCategoriaRisco(idCategoriaRisco);
+            categoriaRisco.setDsCategoriaRisco(dsCategoriaRisco);
+            
+            CategoriaRiscoDAO ctgr = DAOFactory.createCategoraiRiscoDAO();
+            ctgr.remover(idCategoriaRisco);
+
+            request.getRequestDispatcher("JnlCnsltCategoriaRisco.jsp").forward(request, response);
+        }
+    }
+
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         
+        String opcao = request.getParameter("opcao");
         int idCatgRisco = Integer.parseInt(request.getParameter("idCatgRisco"));
         String dsCatgRisco = request.getParameter("dsCatgRisco");
         
@@ -25,11 +46,21 @@ public class CategoriaRiscoController extends HttpServlet {
         categoriaRisco.setIdCategoriaRisco(idCatgRisco);
         categoriaRisco.setDsCategoriaRisco(dsCatgRisco);
         
-        CategoriaRiscoDAO sed = DAOFactory.createCategoraiRiscoDAO();
-        sed.inserir(categoriaRisco);
+        if(opcao.equals("incluir")){
+            
+            CategoriaRiscoDAO sed = DAOFactory.createCategoraiRiscoDAO();
+            sed.inserir(categoriaRisco);
+            request.getRequestDispatcher("JnlCnsltCategoriaRisco.jsp").forward(request,response);
         
-        request.getRequestDispatcher("JnlCnsltCategoriaRisco.jsp").forward(request,response);
-    }
+        }
+        if(opcao.equals("alterar")){
+            
+            CategoriaRiscoDAO sed = DAOFactory.createCategoraiRiscoDAO();
+            sed.editar(categoriaRisco);
+            request.getRequestDispatcher("JnlCnsltCategoriaRisco.jsp").forward(request,response);
+            
+        }
 
+    }
 
 }

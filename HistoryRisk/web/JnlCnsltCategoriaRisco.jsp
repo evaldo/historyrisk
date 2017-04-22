@@ -33,8 +33,8 @@
                 <tr>
                     <td><%=categoriaRisco.getIdCategoriaRisco()%></td>
                     <td><%=categoriaRisco.getDsCategoriaRisco()%></td>
-                    <td>Alterar</td>
-                    <td>Excluir</td>
+                    <td><a href="JnlAltCategoriaRisco.jsp?opcao=alterar&idCategoriaRisco=<%=categoriaRisco.getIdCategoriaRisco()%>&dsCategoriaRisco=<%=categoriaRisco.getDsCategoriaRisco()%>">Alterar</a></td>
+                    <td><a href="CategoriaRiscoController?opcao=excluir&idCategoriaRisco=<%=categoriaRisco.getIdCategoriaRisco()%>&dsCategoriaRisco=<%=categoriaRisco.getDsCategoriaRisco()%>">Excluir</a></td>
                 </tr>
                 <%} %>
             </tbody>

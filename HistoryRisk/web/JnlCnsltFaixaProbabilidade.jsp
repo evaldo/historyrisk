@@ -30,8 +30,8 @@
                     <td><%=faixaProbabilidade.getDsFaixaProb()%></td>
                     <td><%=faixaProbabilidade.getNuLmteInfr()%></td>
                     <td><%=faixaProbabilidade.getNuLmteSupr()%></td>
-                    <td>Alterar</td>
-                    <td>Excluir</td>
+                    <td><a href="JnlAltFaixaProbabilidade.jsp?opcao=alterar&idFaixaProb=<%=faixaProbabilidade.getIdFaixaProb()%>&dsFaixaProb=<%=faixaProbabilidade.getDsFaixaProb()%>&nuLmteInfr=<%=faixaProbabilidade.getNuLmteInfr()%>&nuLmteSupr=<%=faixaProbabilidade.getNuLmteSupr()%>">Alterar</a></td>
+                    <td><a href="FaixaProbabilidadeController?opcao=excluir&idFaixaProb=<%=faixaProbabilidade.getIdFaixaProb()%>">Excluir</a></td>
                 </tr>
                 <%} %>
             </tbody>

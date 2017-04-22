@@ -44,7 +44,17 @@ public class JDBCFaixaProbabilidadeDAO implements FaixaProbabilidadeDAO {
 
     @Override
     public void remover(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String SQL = "DELETE FROM tb_hrsk_faixa_prob WHERE ID_FAIXA_PROB = ?";
+            PreparedStatement se = (PreparedStatement) connection.prepareStatement(SQL);
+            se.setInt(1, id);
+            se.executeUpdate();
+            se.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCSetorEmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao remover Faixa Probabilidade em JDBCFaixaProbabilidadeDAO", ex);
+        }
     }
 
     @Override
@@ -102,7 +112,21 @@ public class JDBCFaixaProbabilidadeDAO implements FaixaProbabilidadeDAO {
 
     @Override
     public void editar(FaixaProbabilidade faixaProbabilidade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            String SQL = "UPDATE tb_hrsk_faixa_prob SET DS_FAIXA_PROB=?, NU_LMTE_INFR=?, NU_LMTE_SUPR=? where ID_FAIXA_PROB=? ";
+            PreparedStatement se = (PreparedStatement) connection.prepareStatement(SQL);
+            se.setString(1, faixaProbabilidade.getDsFaixaProb());
+            se.setInt(2, faixaProbabilidade.getNuLmteInfr());
+            se.setInt(3, faixaProbabilidade.getNuLmteSupr());
+            se.setInt(4, faixaProbabilidade.getIdFaixaProb());
+            
+            se.executeUpdate();
+            se.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCSetorEmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao atualizar a Faixa de Probabilidade desejado em JDBCFaixaProbabilidadeDAO", ex);
+        }
     }
     
 }

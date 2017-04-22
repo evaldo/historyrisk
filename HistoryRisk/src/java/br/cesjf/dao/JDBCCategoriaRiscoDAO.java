@@ -40,7 +40,17 @@ public class JDBCCategoriaRiscoDAO implements CategoriaRiscoDAO {
 
     @Override
     public void remover(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String SQL = "DELETE FROM tb_hrsk_catg_risco WHERE ID_CATG_RISCO = ?";
+            PreparedStatement se = (PreparedStatement) connection.prepareStatement(SQL);
+            se.setInt(1, id);
+            se.executeUpdate();
+            se.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCSetorEmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao remover SetorEmpresa em JDBCSetorEmpresaDAO", ex);
+        }
     }
 
     @Override
@@ -93,7 +103,19 @@ public class JDBCCategoriaRiscoDAO implements CategoriaRiscoDAO {
 
     @Override
     public void editar(CategoriaRisco categoriaRisco) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            String SQL = "UPDATE tb_hrsk_catg_risco SET DS_CATG_RISCO=? where ID_CATG_RISCO=? ";
+            PreparedStatement se = (PreparedStatement) connection.prepareStatement(SQL);
+            se.setString(1, categoriaRisco.getDsCategoriaRisco());
+            se.setInt(2, categoriaRisco.getIdCategoriaRisco());
+            
+            se.executeUpdate();
+            se.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCSetorEmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao atualizar a Categoria de Risco desejado em JDBCCategoriaRiscoDAO", ex);
+        }
     }
     
 }

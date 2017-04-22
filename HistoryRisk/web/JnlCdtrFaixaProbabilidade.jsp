@@ -15,6 +15,7 @@
         <%@ include file ="Menu.jsp" %>
         <h1>Cadastro de Faixa de Probabilidade</h1>
         <form name="form1" action="FaixaProbabilidadeController" method="POST">
+            <div><input type="hidden" name="opcao" value="incluir">
             <div>ID: <input type="text" name="idFaixaProb" value="" size="3"/></div>
             <div>Descrição: <input type="text" name="dsFaixaProb"/></div>
             <div>Número Limite Inferior: <input type="text" name="nuLmteInfr" value="0" /> </div>

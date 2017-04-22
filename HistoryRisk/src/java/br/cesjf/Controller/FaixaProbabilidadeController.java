@@ -12,11 +12,29 @@ import javax.servlet.http.HttpServletResponse;
 
 
 public class FaixaProbabilidadeController extends HttpServlet {
+    
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String opcao = request.getParameter("opcao");
+        int idFaixaProb = Integer.parseInt(request.getParameter("idFaixaProb"));
+        
+        if (opcao.equals("excluir")){
+            
+            FaixaProbabilidadeDAO fxpb = DAOFactory.createFaixaProbabilidadeDAO();
+            fxpb.remover(idFaixaProb);
+
+            request.getRequestDispatcher("JnlCnsltFaixaProbabilidade.jsp").forward(request, response);
+        }
+    }
  
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String opcao = request.getParameter("opcao");
         int idFaixaProb = Integer.parseInt(request.getParameter("idFaixaProb"));
         String dsFaixaProb = request.getParameter("dsFaixaProb");
         int nuLmteInfr = Integer.parseInt(request.getParameter("nuLmteInfr"));
@@ -29,10 +47,23 @@ public class FaixaProbabilidadeController extends HttpServlet {
         faixaProbabilidade.setNuLmteInfr(nuLmteInfr);
         faixaProbabilidade.setNuLmteSupr(nuLmteSupr);
         
-        FaixaProbabilidadeDAO sed = DAOFactory.createFaixaProbabilidadeDAO();
-        sed.inserir(faixaProbabilidade);
+        if(opcao.equals("incluir")){
+            
+            FaixaProbabilidadeDAO sed = DAOFactory.createFaixaProbabilidadeDAO();
+            sed.inserir(faixaProbabilidade);
+            request.getRequestDispatcher("JnlCnsltFaixaProbabilidade.jsp").forward(request,response);
+        }
         
-        request.getRequestDispatcher("JnlCnsltCategoriaRisco.jsp").forward(request,response);
+        if(opcao.equals("alterar")){
+            
+            FaixaProbabilidadeDAO sed = DAOFactory.createFaixaProbabilidadeDAO();
+            sed.editar(faixaProbabilidade);            
+            request.getRequestDispatcher("JnlCnsltFaixaProbabilidade.jsp").forward(request,response);
+            
+        }
+        
+        
+
         
     }
  
