@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="br.cesjf.classes.Risco"%>
 <%@page import="java.util.List"%>
 <%@page import="br.cesjf.util.DAOFactory"%>
@@ -7,6 +8,7 @@
 <%
     RiscoDAO rsc = DAOFactory.createRiscoDAO();
     List<Risco> riscos = rsc.listar();
+    SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
 %>
 
 <%@ include file ="Menu.jsp" %>
@@ -42,10 +44,10 @@
                     <td><%=risco.getDsRisco() %></td>
                     <td><%=risco.getVlCustoEstmdRisco() %></td>
                     <td><%=risco.getVlCustoEsprdRiscoPstv() %></td>
-                    <td><%=risco.getDtlncsRgstRisco() %></td>
-                    <td><%=risco.getDtAltrRgstRisco() %></td>
-                    <td>Alterar</td>
-                    <td>Excluir</td>
+                    <td><%=fmt.format(risco.getDtlncsRgstRisco()) %></td>
+                    <td><%=fmt.format(risco.getDtAltrRgstRisco()) %></td>
+                    <td><a href="JnlAltRisco.jsp?opcao=alterar&idHrskRisco=<%=risco.getIdHrskRisco() %>&idFaixaProbabilidade=<%=risco.getFaixaProbabilidade().getDsFaixaProb() %>&idCategoriaRisco=<%=risco.getCategoriaRisco().getDsCategoriaRisco() %>&idNivelImpacto=<%=risco.getNivelImpacto().getDsNivelIpcto() %>&idProjeto=<%=risco.getProjeto().getDsPrjt() %>&vlCustoEsprdRiscoNgtv=<%=risco.getVlCustoEsprdRiscoNgtv() %>&dsRisco=<%=risco.getDsRisco() %>&vlCustoEstmdRisco=<%=risco.getVlCustoEstmdRisco() %>&vlCustoEsprdRiscoPstv=<%=risco.getVlCustoEsprdRiscoPstv() %>&FormDtIncsRgstRisco=<%=fmt.format(risco.getDtlncsRgstRisco()) %>&FormDdtAltrRgstRisco=<%=fmt.format(risco.getDtAltrRgstRisco()) %>">Alterar</a></td>
+                    <td><a href="RiscoController?opcao=excluir&idHrskRisco=<%=risco.getIdHrskRisco() %>">Excluir</a></td>
                 </tr>
                 <%} %>
             </tbody>

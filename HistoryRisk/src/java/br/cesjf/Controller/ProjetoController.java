@@ -20,12 +20,28 @@ import javax.servlet.http.HttpServletResponse;
 
 
 public class ProjetoController extends HttpServlet {
+    
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String opcao = request.getParameter("opcao");
+        int idHrskprjt = Integer.parseInt(request.getParameter("idHrskprjt"));
+        
+        if (opcao.equals("excluir")){
+            
+            ProjetoDAO prjt = DAOFactory.createProjetoDAO();
+            prjt.remover(idHrskprjt);
+            request.getRequestDispatcher("JnlCnsltProjeto.jsp").forward(request, response);
+        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
+        String opcao = request.getParameter("opcao");
         int idHrskPrjt = Integer.parseInt(request.getParameter("idHrskPrjt"));
         int NumsetorEmpresa = Integer.parseInt(request.getParameter("setorEmpresa"));
         String dsPrjt = request.getParameter("dsPrjt");
@@ -39,8 +55,6 @@ public class ProjetoController extends HttpServlet {
             Logger.getLogger(ProjetoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        JDBCSetorEmpresaDAO ds = new JDBCSetorEmpresaDAO();
-        
         Projeto projeto = new Projeto();
         SetorEmpresa setorEmpresa = new SetorEmpresa();
         setorEmpresa.setIdSetorEmpr(NumsetorEmpresa);
@@ -50,10 +64,19 @@ public class ProjetoController extends HttpServlet {
         projeto.setDsPrjt(dsPrjt);
         projeto.setDtRgstPrjt(dtRgstPrjt);
         
-        ProjetoDAO prjt = DAOFactory.createProjetoDAO();
-        prjt.inserir(projeto);
+        if(opcao.equals("incluir")){
+            
+            ProjetoDAO prjt = DAOFactory.createProjetoDAO();
+            prjt.inserir(projeto);
+            request.getRequestDispatcher("JnlCnsltProjeto.jsp").forward(request,response);
+        }
         
-        request.getRequestDispatcher("JnlCnsltProjeto.jsp").forward(request,response);
+        if(opcao.equals("alterar")){
+            
+            ProjetoDAO prjt = DAOFactory.createProjetoDAO();
+            prjt.editar(projeto);
+            request.getRequestDispatcher("JnlCnsltProjeto.jsp").forward(request,response);
+        }
         
     }
 

@@ -25,6 +25,10 @@
         <servlet-name>CategoraiRiscoController</servlet-name>
         <servlet-class>br.cesjf.Controller.CategoriaRiscoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RiscoController</servlet-name>
+        <servlet-class>br.cesjf.Controller.RiscoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern/>
@@ -48,6 +52,10 @@
     <servlet-mapping>
         <servlet-name>CategoraiRiscoController</servlet-name>
         <url-pattern>/CategoraiRiscoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RiscoController</servlet-name>
+        <url-pattern>/RiscoController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

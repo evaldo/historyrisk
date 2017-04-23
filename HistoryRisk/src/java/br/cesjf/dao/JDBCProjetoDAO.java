@@ -29,7 +29,6 @@ public class JDBCProjetoDAO implements ProjetoDAO {
             PreparedStatement prjt = (PreparedStatement) connection.prepareStatement(SQL);
             
             prjt.setInt(1, projeto.getIdHrskprjt());
-            
             prjt.setInt(2,  projeto.getSetorEmpresa().getIdSetorEmpr());
             prjt.setString(3, projeto.getDsPrjt());
             prjt.setDate(4, new java.sql.Date(projeto.getDtRgstPrjt().getTime()));
@@ -45,7 +44,18 @@ public class JDBCProjetoDAO implements ProjetoDAO {
 
     @Override
     public void remover(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            String SQL = "DELETE FROM tb_hrsk_prjt WHERE ID_HRSK_PRJT=?";
+            PreparedStatement se = (PreparedStatement) connection.prepareStatement(SQL);
+            se.setInt(1, id);
+            se.executeUpdate();
+            se.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCSetorEmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao remover Projeto em JDBCProjetoDAO", ex);
+        }
     }
 
     @Override
@@ -112,9 +122,22 @@ public class JDBCProjetoDAO implements ProjetoDAO {
 
     @Override
     public void editar(Projeto projeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String SQL = "UPDATE tb_hrsk_prjt SET ID_SETOR_EMPR=?, DS_PRJT=?, DT_RGST_PRJT=? where ID_HRSK_PRJT=?";
+            PreparedStatement prjt = (PreparedStatement) connection.prepareStatement(SQL);
+            
+            prjt.setInt(1,  projeto.getSetorEmpresa().getIdSetorEmpr());
+            prjt.setString(2, projeto.getDsPrjt());
+            prjt.setDate(3, new java.sql.Date(projeto.getDtRgstPrjt().getTime()));
+            prjt.setInt(4, projeto.getIdHrskprjt());
+            
+ 
+            prjt.executeUpdate();
+            prjt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCSetorEmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Falha ao atualizar o projeto desejado em JDBCProjetoDAO", ex);
+        }
     }
-    
-    
-    
+
 }
