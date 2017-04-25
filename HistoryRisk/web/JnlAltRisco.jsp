@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="br.cesjf.classes.Projeto"%>
 <%@page import="br.cesjf.dao.ProjetoDAO"%>
 <%@page import="br.cesjf.classes.NivelImpacto"%>
@@ -34,8 +35,10 @@
     String dsRisco = request.getParameter("dsRisco");
     String vlCustoEstmdRisco = request.getParameter("vlCustoEstmdRisco");
     String vlCustoEsprdRiscoPstv = request.getParameter("vlCustoEsprdRiscoPstv");
-    String FormDtIncsRgstRisco = request.getParameter("dtIncsRgstRisco");
-    String FormDdtAltrRgstRisco = request.getParameter("dtAltrRgstRisco");
+    String formDtIncsRgstRisco = request.getParameter("dtIncsRgstRisco");
+    String formDdtAltrRgstRisco = request.getParameter("dtAltrRgstRisco");
+    
+    SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
 
 %>
 <html>
@@ -106,8 +109,8 @@
                 <div>Descrição do Risco: <input type="text" name="dsRisco" value="<%=dsRisco%>"/></div>
                 <div>Valor do Custo Estimado do Risco: <input type="text" name="vlCustoEstmdRisco" value="<%=vlCustoEstmdRisco%>"/></div>
                 <div>Valor do Custo Esperado Risco Positivo: <input type="text" name="vlCustoEsprdRiscoPstv" value="<%=vlCustoEsprdRiscoPstv%>"/></div>
-                <div>Data de Inscrição do Risco : <input type="text" id="dtIncsRgstRisco" name="dtIncsRgstRisco" value="<%=FormDtIncsRgstRisco%>"/></div>    
-                <div>Data de Alteração do Risco : <input type="text" id="dtAltrRgstRisco" name="dtAltrRgstRisco" value="<%=FormDdtAltrRgstRisco%>"/></div>
+                <div>Data de Inscrição do Risco : <input type="text" id="dtIncsRgstRisco" name="dtIncsRgstRisco" value="<%=formDtIncsRgstRisco%>"/></div>    
+                <div>Data de Alteração do Risco : <input type="text" id="dtAltrRgstRisco" name="dtAltrRgstRisco" value="<%=formDdtAltrRgstRisco%>"/></div>
 
 
                 <div><input type="submit" value="Salvar" name="salvar" /> <input type="reset" value="Cancelar" name="cancelar" /></div>
