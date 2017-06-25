@@ -1,61 +1,55 @@
-/* 
-    Documento CSS
-*/
-
-*{
+.rodape {
+    position: fixed;
+    bottom: 0;
+    background-color: #2C2C2C;
+    width: 100%;
+    color: #9d9d9d;
+    padding: 10px 45px;
+}
+h1{
+    font-family: Lucida Sans Unicode !important;
+}
+.conteudo{
+    margin: 10px 45px 130px;
+}
+.glyphicon-remove-sign{
+    color: red;
+}
+.div-login{
+    width: 95%;
+    max-width: 500px;
+    background-color: white;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #BBB;
+    box-shadow: 5px 6px 7px 4px #bababa;
+}
+.div-login > div:last-child{
+    width: 100%;
+}
+.div-login > div{
+    margin: 10px 0;
+}
+.topo-site{
+    background: #eee;
+    padding: 3px;
+    font-family: arial-black;
+}
+.information {
+    float: right;
+    margin-top: 20px;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif !important;
+}
+table tr td, table tr th{
+    font-size: 11pt;
+}
+#erro > div{
     margin: 0px;
-    padding: 0px;
 }
 
-.menu{
-    list-style-type: none;
-    margin: 20px 0 0 350px;
-    border: 1px solid #990000;
-    float: left;
-}
-
-.menu li{
-    position: relative;
-    float: left;
-    border-right: 1px solid #990000;
-    padding-left: 15px;
-    padding-right: 15px;
-    background-color: #FF0000;
-    height: 28px;
-    line-height: 28px;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-}
-
-.menu li a{
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    color: #FFFFFF;
-    text-decoration: none;
-}
-
-.menu li ul{
-    position: absolute;
-    top: 28px;
-    left: -20px;
-    display: none;
-}
-
-.menu li:hover ul, .menu li ul li:hover ul, .menu li.over ul, menu li ul li.over ul{
-    display: block;    
-}
-
-.menu li ul li{
-    border: 1px solid #990000;
-    display: block;
-    width: 150px;
-    height: 25px;
-    line-height: 25px;
-}
-
-.menu li:hover{
-    background-color: black;
+#chbox > div{
+    min-height: 34px !important;
+    padding-left: 237px !important;
+    margin-bottom: 0 !important;
+    cursor: pointer;
 }

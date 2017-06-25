@@ -10,4 +10,6 @@ public interface FaixaProbabilidadeDAO {
     public List<FaixaProbabilidade> listar();
     public FaixaProbabilidade buscar(int id);
     public void editar(FaixaProbabilidade faixaProbabilidade);
+    public List<FaixaProbabilidade> pesquisar(String pesq);
+    public List<FaixaProbabilidade> getByFaixaProbabilidadeRisco(int nuPerctProbRisco);
 }

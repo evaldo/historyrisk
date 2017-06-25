@@ -49,8 +49,8 @@ public class teste {
             System.out.println("Descricao: " + risco.getDsRisco());
             System.out.println("Custo Estimado: " + risco.getVlCustoEstmdRisco());
             System.out.println("Valor Esperado Positivo: " + risco.getVlCustoEsprdRiscoPstv());
-            System.out.println("Data Inc: " + risco.getDtlncsRgstRisco());
-            System.out.println("Data Alt: " + risco.getDtAltrRgstRisco());
+//            System.out.println("Data Inc: " + risco.getDtlncsRgstRisco());
+//            System.out.println("Data Alt: " + risco.getDtAltrRgstRisco());
             System.out.println("------------------------------------------");
        }
         

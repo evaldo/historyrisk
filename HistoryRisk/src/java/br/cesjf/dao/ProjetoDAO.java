@@ -10,5 +10,6 @@ public interface ProjetoDAO {
     public List<Projeto> listar();
     public Projeto buscar(int id);
     public void editar(Projeto projeto);
+    public List<Projeto> pesquisar(String pesq);
     
 }

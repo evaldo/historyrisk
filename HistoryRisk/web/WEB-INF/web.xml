@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>FilterSession</filter-name>
+        <filter-class>br.cesjf.util.FilterSession</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterSession</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -29,6 +37,30 @@
         <servlet-name>RiscoController</servlet-name>
         <servlet-class>br.cesjf.Controller.RiscoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UsuarioController</servlet-name>
+        <servlet-class>br.cesjf.Controller.UsuarioController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AuthenticationController</servlet-name>
+        <servlet-class>br.cesjf.Controller.AuthenticationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubCategoriaRiscoController</servlet-name>
+        <servlet-class>br.cesjf.Controller.SubCategoriaRiscoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubCategoriaRiscoByCategoriaRisco</servlet-name>
+        <servlet-class>br.cesjf.Ajax.SubCategoriaRiscoByCategoriaRisco</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetByFaixaProbabilidadeRisco</servlet-name>
+        <servlet-class>br.cesjf.Ajax.GetByFaixaProbabilidadeRisco</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CalcRiscoGeralByProject</servlet-name>
+        <servlet-class>br.cesjf.Ajax.CalcRiscoGeralByProject</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern/>
@@ -57,9 +89,33 @@
         <servlet-name>RiscoController</servlet-name>
         <url-pattern>/RiscoController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsuarioController</servlet-name>
+        <url-pattern>/UsuarioController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthenticationController</servlet-name>
+        <url-pattern>/AuthenticationController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubCategoriaRiscoController</servlet-name>
+        <url-pattern>/SubCategoriaRiscoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubCategoriaRiscoByCategoriaRisco</servlet-name>
+        <url-pattern>/SubCategoriaRiscoByCategoriaRisco</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetByFaixaProbabilidadeRisco</servlet-name>
+        <url-pattern>/GetByFaixaProbabilidadeRisco</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalcRiscoGeralByProject</servlet-name>
+        <url-pattern>/CalcRiscoGeralByProject</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            5000
         </session-timeout>
     </session-config>
 </web-app>

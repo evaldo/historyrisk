@@ -15,17 +15,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>History Risk - Consulta de Projetos</title>
+        <link rel="shortcut icon" href="imagens/ImagemLogo.png" type="image/x-png"/>
     </head>
     <body>
         <%@ include file ="Menu.jsp" %>
         <h1>Consulta Projeto</h1>
-        <table border="1">
+        <form class="navbar-form navbar-left" role="search" name="form1" action="ProjetoController" method="POST">
+            <input type="hidden" name="opcao" value="pesquisar">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Pesquisar..." name="cmpPesquisa" size="100">
+            </div>
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Pesquisar</button>
+        </form>
+        <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th></th>
                     <th>Setor da Empresa</th>
                     <th>Descrição do Projeto</th>
-                    <th>Data</th>
+                    <th>Data do Projeto</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -34,15 +42,27 @@
             <tbody>
                 <% for (Projeto projeto : projetos) {%>              
                 <tr>
-                    <td><%=projeto.getIdHrskprjt()%></td>
+                    <td align="center"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></td>
                     <td><%=projeto.getSetorEmpresa().getNmSetorEmpr()%></td>
                     <td><%=projeto.getDsPrjt()%></td>
                     <td><%=fmt.format(projeto.getDtRgstPrjt())%></td>
-                    <td><a href="JnlAltProjeto.jsp?opcao=alterar&idHrskPrjt=<%=projeto.getIdHrskprjt()%>&NumsetorEmpresa=<%=projeto.getSetorEmpresa().getNmSetorEmpr()%>&dsPrjt=<%=projeto.getDsPrjt()%>&dtRgstPrjt=<%=fmt.format(projeto.getDtRgstPrjt())%>"> Alterar</a></td>
-                    <td><a href="ProjetoController?opcao=excluir&idHrskprjt=<%=projeto.getIdHrskprjt()%>">Excluir</a></td>
-                </tr>
-                <%}%>
-            </tbody>
-        </table>
+                    <td align="right"><a href="JnlAltProjeto.jsp?opcao=alterar&idHrskPrjt=<%=projeto.getIdHrskprjt()%>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+                    <td align="right"><a href="javascript:func()" onclick="confirmacao('1')"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></a></td>
+            <script language="Javascript">
+                function confirmacao(id) {
+                    var resposta = confirm("Deseja realmente excluir este registro?");
+                    if (resposta == true) {
+                        window.location.href = "ProjetoController?opcao=excluir&idHrskprjt=<%=projeto.getIdHrskprjt()%>"
+                    }
+                }
+            </script>
 
-        <%@ include file ="Rodape.jsp" %>
+        </tr>
+        <%}%>
+    </tbody>
+</table>
+
+<%@ include file ="Rodape.jsp" %>
+
+</body>
+</html>

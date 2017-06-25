@@ -10,4 +10,6 @@ public interface SetorEmpresaDAO {
     public List<SetorEmpresa> listar();
     public SetorEmpresa buscar(int id);
     public void editar(SetorEmpresa setorEmpresa);
+    public List<SetorEmpresa> pesquisar(String pesq);
+    
 }

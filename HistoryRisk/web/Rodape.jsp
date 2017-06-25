@@ -2,11 +2,10 @@
 
 
 
-
-
-<br><br><br><br>
-    <p>Aluno: George Talmo Vital Samarino</div>
-    <p>Professor: Evaldo Oliveira</div>
-    <p>Instituição: CES/JF</div>
+</div> <!-- fechando div conteudo -->
+    <div class='rodape'>    
+        <p>Desenvolvido por <a href="https://www.linkedin.com/in/georgesamarino/">George Talmo Vital Samarino</a> para conclusão do curso de Sistemas de Informação da instituição <a href="http://www.cesjf.br/"> Centro de Ensino Superior de Juiz de Fora</a>.</p>
+        <p></p>
+    </div>
     </body>
 </html>

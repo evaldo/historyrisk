@@ -1,3 +1,5 @@
+<%@page import="br.cesjf.classes.SubCategoriaRisco"%>
+<%@page import="br.cesjf.dao.SubCategoriaRiscoDAO"%>
 <%@page import="br.cesjf.classes.Projeto"%>
 <%@page import="br.cesjf.dao.ProjetoDAO"%>
 <%@page import="br.cesjf.classes.NivelImpacto"%>
@@ -18,6 +20,9 @@
     CategoriaRiscoDAO ctgr = DAOFactory.createCategoraiRiscoDAO();
     List<CategoriaRisco> categoriasRisco = ctgr.listar();
 
+    SubCategoriaRiscoDAO subctgr = DAOFactory.createSubCategoriaRiscoDAO();
+    List<SubCategoriaRisco> subCategoriasRisco = subctgr.listar();
+
     NivelImpactoDAO nvlipcto = DAOFactory.createNivelImpactoDAO();
     List<NivelImpacto> niveisImpacto = nvlipcto.listar();
 
@@ -29,75 +34,146 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>History Risk - Novo Risco</title>
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
-        <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-        <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
-        <script>
-            $(function () {
-                $("#dtIncsRgstRisco").datepicker({
-                    showOn: "button",
-                    buttonImage: "imagens/calendario.png",
-                    buttonImageOnly: true,
-                    dateFormat: 'dd/mm/yy'
-
-                });
-            });
-        </script>
-        <script>
-            $(function () {
-                $("#dtAltrRgstRisco").datepicker({
-                    showOn: "button",
-                    buttonImage: "imagens/calendario.png",
-                    buttonImageOnly: true,
-                    dateFormat: 'dd/mm/yy'
-                });
-            });
-        </script>
-
+        <link rel="shortcut icon" href="imagens/ImagemLogo.png" type="image/x-png"/>
     </head>
     <body>
         <%@ include file ="Menu.jsp" %>
+
+        <script type="text/javascript" language = "javascript">
+            function AjaxSubCategoriaRiscoByCategoriaRisco(idCategoriaRisco) {
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'html',
+                    url: "SubCategoriaRiscoByCategoriaRisco",
+                    data: {categoriaRisco: idCategoriaRisco},
+                    success: function (data, textStatus, jqXHR) {
+                        $("#subCategoriaRisco").empty();
+                        $("#subCategoriaRisco").append(data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    },
+                    beforeSend: function (xhr) {
+                    }
+                })
+            }
+
+            function AjaxGetByFaixaProbabilidadeRisco(nuPerctProbRisco) {
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'html',
+                    url: "GetByFaixaProbabilidadeRisco",
+                    data: {faixaProbabilidade: nuPerctProbRisco},
+                    success: function (data, textStatus, jqXHR) {
+                        $("#faixaProbabilidade").empty();
+                        $("#faixaProbabilidade").append(data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    },
+                    beforeSend: function (xhr) {
+                    }
+                })
+            }
+        </script>
         <h1>Cadastro de Risco</h1>
-        <form name="form1" action="RiscoController" method="POST">
-            <div><input type="hidden" name="opcao" value="incluir">
-            <div>ID: <input type="text" name="idHrskRisco" value="" size="3"/></div>
-            <div>Faixa de Probabilidade: <select name="faixaProbabilidade">
-                    <% for (FaixaProbabilidade faixaProbabilidade : faixasProbabilidade) {%>  
-                    <option value="<%=faixaProbabilidade.getIdFaixaProb()%>"><%=faixaProbabilidade.getDsFaixaProb()%></option>
-                    <%} %>
-                </select>
+        <form  class="form-horizontal" name="form1" action="RiscoController" method="POST">
+            <input type="hidden" name="opcao" value="incluir">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Valor do Número Percentual do Risco</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" name="nuPerctProbRisco" onblur="AjaxGetByFaixaProbabilidadeRisco(this.value)" required>
+                </div>
+                <label class="col-sm-2 control-label">Faixa de Probabilidade</label>
+                <div class="col-sm-3">
+                    <select type="select" id="faixaProbabilidade" class="form-control" name="faixaProbabilidade" required>
+                        <option value="">Selecione...</option>
+                        <% for (FaixaProbabilidade faixaProbabilidade : faixasProbabilidade) {%>  
+                        <option value="<%=faixaProbabilidade.getIdFaixaProb()%>"><%=faixaProbabilidade.getDsFaixaProb()%></option>
+                        <%}%>
+                    </select>
+                </div>
             </div>
 
-            <div>Categoria do Risco: <select name="categoriaRisco">
-                    <% for (CategoriaRisco categoriaRisco : categoriasRisco) {%>  
-                    <option value="<%=categoriaRisco.getIdCategoriaRisco()%>"><%=categoriaRisco.getDsCategoriaRisco()%></option>
-                    <%} %>
-                </select>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Categoria do Risco</label>
+                <div class="col-sm-3">
+                    <select type="select" class="form-control" onchange="AjaxSubCategoriaRiscoByCategoriaRisco(this.value)" name="categoriaRisco" required>
+                        <option value="">Selecione...</option>
+                        <% for (CategoriaRisco categoriaRisco : categoriasRisco) {%>  
+                        <option value="<%=categoriaRisco.getIdCategoriaRisco()%>"><%=categoriaRisco.getDsCategoriaRisco()%></option>
+                        <%}%>
+                    </select>
+                </div>
+                <label class="col-sm-2 control-label">Sub Categoria do Risco</label>
+                <div class="col-sm-3">
+                    <select type="select" id="subCategoriaRisco" class="form-control" name="subCategoriaRisco" required>
+                        <option value="">Selecione...</option>
+                        <% for (SubCategoriaRisco subCategoriaRisco : subCategoriasRisco) {%>  
+                        <option value="<%=subCategoriaRisco.getIdSubCatgRisco()%>"><%=subCategoriaRisco.getDsSubCatgRisco()%></option>
+                        <%}%>
+                    </select>
+                </div>
             </div>
 
-            <div>Nivel do Impacto: <select name="nivelImpacto">
-                    <% for (NivelImpacto nivelImpacto : niveisImpacto) {%>  
-                    <option value="<%=nivelImpacto.getIdNivelIpcto()%>"><%=nivelImpacto.getDsNivelIpcto()%></option>
-                    <%} %>
-                </select>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Nivel do Impacto</label>
+                <div class="col-sm-3">
+                    <select type="select" class="form-control" name="nivelImpacto" required>
+                        <option value="">Selecione...</option>
+                        <% for (NivelImpacto nivelImpacto : niveisImpacto) {%>  
+                        <option value="<%=nivelImpacto.getIdNivelIpcto()%>"><%=nivelImpacto.getNmNivelIpcto() %></option>
+                        <%}%>
+                    </select>
+                </div>
             </div>
 
-            <div>Projeto: <select name="projeto">
-                    <% for (Projeto projeto : projetos) {%>  
-                    <option value="<%=projeto.getIdHrskprjt()%>"><%=projeto.getDsPrjt()%></option>
-                    <%}%>
-                </select>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Projeto</label>
+                <div class="col-sm-3">
+                    <select type="select" class="form-control" name="projeto" required>
+                        <option value="">Selecione...</option>
+                        <% for (Projeto projeto : projetos) {%>  
+                        <option value="<%=projeto.getIdHrskprjt()%>"><%=projeto.getDsPrjt()%></option>
+                        <%}%>
+                    </select>
+                </div>
             </div>
 
-            <div>Valor do Custo Esperado Risco Negativo: <input type="text" name="vlCustoEsprdRiscoNgtv" value="0,00"/></div>
-            <div>Descrição do Risco: <input type="text" name="dsRisco" value=""/></div>
-            <div>Valor do Custo Estimado do Risco: <input type="text" name="vlCustoEstmdRisco" value="0,00"/></div>
-            <div>Valor do Custo Esperado Risco Positivo: <input type="text" name="vlCustoEsprdRiscoPstv" value="0,00"/></div>
-            <div>Data de Inscrição do Risco : <input type="text" id="dtIncsRgstRisco" name="dtIncsRgstRisco" value=""/></div>    
-            <div>Data de Alteração do Risco : <input type="text" id="dtAltrRgstRisco" name="dtAltrRgstRisco" value=""/></div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Descrição do Risco</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="dsRisco" required>
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Valor do Custo Estimado do Risco</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="vlCustoEstmdRisco" required>
+                </div>
+            </div>
 
-            <div><input type="submit" value="Salvar" name="salvar" /> <input type="reset" value="Cancelar" name="cancelar" /></div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="icRiscoOcrrdPrjt" value="s" checked> Risco Ocorrido
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    Observação
+                </label>
+                <div class="col-sm-3">
+                    <textarea class="form-control" rows="4" name="obRiscoOcrrdPrjt"></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-3 text-right">
+                    <button type="submit" class="btn btn-default" name="salvar">Salvar</button>
+                </div>
+            </div>
+
             <%@ include file ="Rodape.jsp" %>
     </body>
 </html>

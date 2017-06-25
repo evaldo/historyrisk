@@ -13,8 +13,14 @@ public class Risco {
     private String dsRisco;
     private Double vlCustoEstmdRisco;
     private Double vlCustoEsprdRiscoPstv;
-    private Date dtlncsRgstRisco;
-    private Date dtAltrRgstRisco;
+    private Usuario nuMatrIncs;
+    private Date dtIncs;
+    private Usuario nuMatrAltr;
+    private Date dtAltr;
+    private Double nuPerctProbRisco; //NU_PERCT_PROB_RISCO
+    private String icRiscoOcrrdPrjt; //IC_RISCO_OCRRD_PRJT
+    private String obRiscoOcrrdPrjt; //OB_RISCO_OCRRD_PRJT
+    private SubCategoriaRisco subCategoriaRisco; // //ID_SUBCATG_RISCO
 
     public Risco() {
     }
@@ -91,21 +97,72 @@ public class Risco {
         this.vlCustoEsprdRiscoPstv = vlCustoEsprdRiscoPstv;
     }
 
-    public Date getDtlncsRgstRisco() {
-        return dtlncsRgstRisco;
+    public Usuario getNuMatrIncs() {
+        return nuMatrIncs;
     }
 
-    public void setDtlncsRgstRisco(Date dtlncsRgstRisco) {
-        this.dtlncsRgstRisco = dtlncsRgstRisco;
+    public void setNuMatrIncs(Usuario nuMatrIncs) {
+        this.nuMatrIncs = nuMatrIncs;
     }
 
-    public Date getDtAltrRgstRisco() {
-        return dtAltrRgstRisco;
+    public Date getDtIncs() {
+        return dtIncs;
     }
 
-    public void setDtAltrRgstRisco(Date dtAltrRgstRisco) {
-        this.dtAltrRgstRisco = dtAltrRgstRisco;
+    public void setDtIncs(Date dtIncs) {
+        this.dtIncs = dtIncs;
     }
+
+    public Usuario getNuMatrAltr() {
+        return nuMatrAltr;
+    }
+
+    public void setNuMatrAltr(Usuario nuMatrAltr) {
+        this.nuMatrAltr = nuMatrAltr;
+    }
+
+    public Date getDtAltr() {
+        return dtAltr;
+    }
+
+    public void setDtAltr(Date dtAltr) {
+        this.dtAltr = dtAltr;
+    }    
+
+    public Double getNuPerctProbRisco() {
+        return nuPerctProbRisco;
+    }
+
+    public void setNuPerctProbRisco(Double nuPerctProbRisco) {
+        this.nuPerctProbRisco = nuPerctProbRisco;
+    }
+
+    public String getIcRiscoOcrrdPrjt() {
+        return icRiscoOcrrdPrjt;
+    }
+
+    public void setIcRiscoOcrrdPrjt(String icRiscoOcrrdPrjt) {
+        this.icRiscoOcrrdPrjt = icRiscoOcrrdPrjt;
+    }
+
+    public String getObRiscoOcrrdPrjt() {
+        return obRiscoOcrrdPrjt;
+    }
+
+    public void setObRiscoOcrrdPrjt(String obRiscoOcrrdPrjt) {
+        this.obRiscoOcrrdPrjt = obRiscoOcrrdPrjt;
+    }
+
+    public SubCategoriaRisco getSubCategoriaRisco() {
+        return subCategoriaRisco;
+    }
+
+    public void setSubCategoriaRisco(SubCategoriaRisco subCategoriaRisco) {
+        this.subCategoriaRisco = subCategoriaRisco;
+    }
+    
+    
+    
     
     
     

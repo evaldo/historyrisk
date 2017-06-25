@@ -1,3 +1,5 @@
+<%@page import="br.cesjf.classes.Projeto"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="br.cesjf.classes.SetorEmpresa"%>
 <%@page import="br.cesjf.dao.SetorEmpresaDAO"%>
 <%@page import="java.util.List"%>
@@ -10,54 +12,65 @@
     SetorEmpresaDAO stre = DAOFactory.createSetorEmpresaDAO();
     List<SetorEmpresa> setoresEmpresa = stre.listar();
     String opcao = request.getParameter("opcao");
-    String idHrskPrjt = request.getParameter("idHrskPrjt");
-    String NumsetorEmpresa = request.getParameter("setorEmpresa");
-    String dsPrjt = request.getParameter("dsPrjt");
-    String dtRgstPrjt = request.getParameter("dtRgstPrjt");
+    int idHrskPrjt = Integer.parseInt(request.getParameter("idHrskPrjt"));
+    
+    ProjetoDAO prjt = DAOFactory.createProjetoDAO();
+    Projeto projeto = prjt.buscar(idHrskPrjt);
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>History Risk - Alterando Projeto</title>
-                <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
-        <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-        <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
-        <script>
-            $(function() {
-                $( "#dtIncsRgstRisco" ).datepicker({
-                    showOn: "button",
-                    buttonImage: "imagens/calendario.png",
-                    buttonImageOnly: true,
-                    dateFormat: 'dd/mm/yy'
-                   
-                });
-            });
-        </script>
-        <script>
-            $(function() {
-                $( "#dtRgstPrjt" ).datepicker({
-                    showOn: "button",
-                    buttonImage: "imagens/calendario.png",
-                    buttonImageOnly: true,
-                    dateFormat: 'dd/mm/yy'
-                });
-            });
-        </script>
+        <link rel="shortcut icon" href="imagens/ImagemLogo.png" type="image/x-png"/>
     </head>
     <body>
         <%@ include file ="Menu.jsp" %>
         <h1>Alteração de Projeto</h1>
-        <form name="form1" action="ProjetoController" method="POST">
-            <div><input type="hidden" name="opcao" value="<%=opcao%>">
-            <div>ID: <input type="text" name="idHrskPrjt" value="<%=idHrskPrjt%>" size="3" readonly/></div>
-            <div>Setor da Empresa: <select name="setorEmpresa">
-                    <% for (SetorEmpresa setorEmpresa : setoresEmpresa){ %>  
-                        <option value="<%=setorEmpresa.getIdSetorEmpr()%>"><%=setorEmpresa.getNmSetorEmpr() %></option>
-                        <%} %>
+        <form class="form-horizontal" name="form1" action="ProjetoController" method="POST">
+            <input type="hidden" name="opcao" value="<%=opcao%>">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">ID</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="idHrskPrjt" value="<%=projeto.getIdHrskprjt()%>" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Setor Empresa</label>
+                <div class="col-sm-3">
+                    <select type="select" class="form-control" name="setorEmpresa" required>
+                        <option value="">Selecione...</option>
+                        <% for (SetorEmpresa setorEmpresa : setoresEmpresa) {
+                            if(projeto.getSetorEmpresa().getIdSetorEmpr() == setorEmpresa.getIdSetorEmpr()){
+                        %>  
+                        <option value="<%=setorEmpresa.getIdSetorEmpr()%>" selected="selected"><%=setorEmpresa.getNmSetorEmpr()%></option>
+                        <%} else{%>
+                        <option value="<%=setorEmpresa.getIdSetorEmpr()%>"><%=setorEmpresa.getNmSetorEmpr()%></option>
+                        <%}} %>
                     </select>
-            <div>Descrição do Projeto: <input type="text" name="dsPrjt" value="<%=dsPrjt%>"/> </div>
-            <div>Data do Projeto: <input type="text" id="dtRgstPrjt" name="dtRgstPrjt" value="<%=dtRgstPrjt%>"/></div>
-            <div><input type="submit" value="Salvar" name="salvar" /> <input type="reset" value="Cancelar" name="cancelar" /></div>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Descrição do Projeto</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="dsPrjt" value="<%=projeto.getDsPrjt()%>" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Data do Projeto</label>
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" name="dtRgstPrjt" value="<%=fmt.format(projeto.getDtRgstPrjt())%>" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-3 text-right">
+                    <button type="submit" class="btn btn-default" name="salvar">Salvar</button>
+                </div>
+            </div>
+
         </form>
         <%@ include file ="Rodape.jsp" %>
     </body>

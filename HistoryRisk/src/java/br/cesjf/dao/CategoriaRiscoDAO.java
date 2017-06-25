@@ -1,4 +1,3 @@
-
 package br.cesjf.dao;
 
 import br.cesjf.classes.CategoriaRisco;
@@ -11,5 +10,6 @@ public interface CategoriaRiscoDAO {
     public List<CategoriaRisco> listar();
     public CategoriaRisco buscar(int id);
     public void editar(CategoriaRisco categoriaRisco);
+    public List<CategoriaRisco> pesquisar(String pesq);
     
 }

@@ -10,5 +10,7 @@ public interface RiscoDAO {
     public List<Risco> listar();
     public Risco buscar(int id);
     public void editar(Risco risco);
+    public List<Risco> getByProject(int idProjeto);
+    public List<Risco> pesquisar(String pesq);
     
 }

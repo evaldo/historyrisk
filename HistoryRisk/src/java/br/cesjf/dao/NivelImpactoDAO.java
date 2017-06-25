@@ -10,4 +10,5 @@ public interface NivelImpactoDAO {
     public List<NivelImpacto> listar();
     public NivelImpacto buscar(int id);
     public void editar(NivelImpacto setorEmpresa);
+    public List<NivelImpacto> pesquisar(String pesq);
 }
